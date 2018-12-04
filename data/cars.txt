@@ -1,8 +1,5 @@
 lion king,drama,100
 Mask,Comedy,120
 spider man,action,124
-matrix 3,drasl,300
-matrix,sci-fi,120
-lala,mjoggenre,11
-aa,22,22
-2,2,2
+
+
