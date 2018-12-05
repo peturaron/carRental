@@ -1,18 +1,5 @@
-carId:name:year:type:price:rentalStatus(active/inactive)
-EF A45:Toyota:2018:medium:20500:active
-TG Y78:Audi:2017:large:34000:active
-YU W56:Kia:2018:small:12000:active
-SD B78:Toyota:2017:large:38300:active
-UK M23:Toyota:2018:large:38300:active
-LK D67:Toyota:2018:small:12000:active
-PE E89:Kia:2018:medium:20500:active
-QW R34:Kia:2017:medium:20500:active
-IK D99:Toyota:2018:large:38300:active
-TT T16:Audi:2018:medium:20500:active
-PE W82:Kia:2017:small:12000:active
-UK E82:Toyota:2017:large:38300:active
-OW B97:Kia:2018:small:12000:active
-ME P92:Toyota:2018:small:12000:active
-OW W02:Audi:2018:medium:20500:inactive
+lion king,drama,100
+Mask,Comedy,120
+spider man,action,124
 
 
