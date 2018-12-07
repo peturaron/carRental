@@ -1,6 +1,3 @@
-email:name:dateOfBirth:gender:dateOfRegistration:payment:status(active/inactive)
-peturs17@ru.is,Petur Aron Sigurdsson,06.11.94,M,05.12.18,Cash
-sindrik17@ru.is,Sindri Snaefells Kristinsson,03.11.94,M,01.12.17,Card
 sigurdurg@ru.is:Sigurdur Gudmundsson:23.05.1983:M:01.01.2015:Card:active
 haraldurf@ru.is:Haraldur Sigfússon:24.12.1980:M:01.01.2015:Card:active
 gudrunf@ru.is:Guðrún Finnsdóttir:01.03.1963:F:01.01.2015:Card:active
