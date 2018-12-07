@@ -1,0 +1,23 @@
+carId:rentDate:returnDate:bookingStatus(active/cancel/inactive):customerEmail
+EF A45:04.12.2018:12.12.2018:active:sigurdurg@ru.is
+TG Y78:12:01.2019:13.01.2019:active:haraldurf@ru.is
+YU W56:23.12.2018:24.12.2018:active:rutr@ru.is
+SD B78:03.03.2019:13.03.2019:active:gunnari@ru.is
+UK M23:14.06.2019:30.06.2019:active:sigridurl@ru.is
+LK D67:09.12.2018:13.12.2018:active:larau@ru.is
+EF A45:13.12.2018:15.12.2018:active:bjornl@ru.is
+TG Y78:14.01.2019:31.01.2019:active:gudrunj@ru.is
+YU W56:26.12.2018:05.01.2019:active:gudrunf@ru.is
+SD B78:13.03.2019:17.03.2019:active:jonj@ru.is
+UK M23:01.07.2019:13.07.2019:active:larau@ru.is
+LK D67:14.12.2018:16.12.2018:active:gunnari@ru.is
+EF A45:04.12.2017:12.12.2017:inactive:sigurdurg@ru.is
+TG Y78:12:01.2018:13.01.2018:inactive:haraldurf@ru.is
+YU W56:23.12.2017:24.12.2017:inactive:gudrunf@ru.is
+SD B78:03.03.2018:13.03.2018:inactive:rutr@ru.is
+UK M23:14.06.2018:30.06.2018:inactive:sigridurl@ru.is
+LK D67:09.12.2016:13.12.1016:inactive:gunnari@ru.is
+EF A45:13.12.2017:15.12.2017:inactive:haraldurf@ru.is
+TG Y78:14.01.2015:31.01.2015:inactive:rutr@ru.is
+YU W56:26.12.2017:05.01.2017:inactive:gudrunf@ru.is
+SD B78:13.03.2017:17.03.2017:inactive:sigurdurg@ru.is
