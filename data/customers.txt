@@ -1,3 +1,10 @@
-peturs17@ru.is,Petur Aron Sigurdsson,06.11.94,M,05.12.18,Cash
-sindrik17@ru.is,Sindri Snaefells Kristinsson,03.11.94,M,01.12.17,Card
-asta@astriki.is,Ásta Gísladóttir,20-12-1972,F,7-12-2018,Card
+sigurdurg@ru.is:Sigurdur Gudmundsson:23.05.1983:M:01.01.2015:Card:active
+haraldurf@ru.is:Haraldur Sigfússon:24.12.1980:M:01.01.2015:Card:active
+gudrunf@ru.is:Guðrún Finnsdóttir:01.03.1963:F:01.01.2015:Card:active
+rutr@ru.is:Rut Rúnarsdóttir:04.06.1999:F:01.01.2015:Card:active
+gunnari@ru.is:Gunnar Ingason:11.05.1987:M:01.01.2015:Card:active
+sigridurl@ru.is:Sigríður Logadóttir:23.05.1966:M:01.01.2015:Card:active
+larau@ru.is:Lára Unnarsdóttir:14.11.1966:F:01.01.2015:Card:active
+bjornl@ru.is:Björn Lárusson:22.04.1956:M:01.01.2015:Card:active
+gudrunj@ru.is:Guðrún Jónsdóttir:14.08.1989:F:01.01.2015:Card:active
+jonj@ru.is:Jón Jónsson:31.08.2000:M:01.01.2015:Card:active
