@@ -4,7 +4,7 @@ from models.Customer import Customer
 class SalesmanUi:
 
     def __init__(self):
-        self.__customer_service = CustomerService()
+        self.__customerService = CustomerService()
 
     def main_menu(self):
 
@@ -25,9 +25,9 @@ class SalesmanUi:
                 dateOfReg = input("Date of registration: ")
                 payMethod = input("(Cash/Card): ")
 
-                new_customer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
-                self.__customer_service.add_customer(new_customer)
+                newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
+                self.__customerService.addCustomer(newCustomer)
 
             elif action == "2":
-                customers = self.__customer_service.get_customers()
+                customers = self.__customerService.getCustomers()
                 print(customers)

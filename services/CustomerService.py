@@ -2,19 +2,19 @@ from repositories.CustomerRepository import CustomerRepository
 
 class CustomerService:
     def __init__(self):
-        self.__customer_repo = CustomerRepository()
+        self.__customerRepo = CustomerRepository()
 
-    def add_customer(self, customer):
-        if self.is_valid_customer(customer):
-            self.__customer_repo.add_customer(customer)
+    def addCustomer(self, customer):
+        if self.isValidCustomer(customer):
+            self.__customerRepo.addCustomer(customer)
 
-    def is_valid_customer(self, customer):
-        #here should be some code to
+    def isValidCustomer(self, customer):
+        #here should be ssome code to
         #validate the customer
         return True
 
-    def get_customers(self):
-        return self.__customer_repo.get_customers()
+    def getCustomers(self):
+        return self.__customerRepo.getCustomers()
 
-    def get_customers_by_genre(self, name):
+    def getCustomersByGenre(self, name):
         pass

@@ -5,23 +5,23 @@ class CustomerRepository:
     def __init__(self):
         self.__customers = []
 
-    def add_customer(self, customer):
+    def addCustomer(self, customer):
         # first add to file then to private list
-        with open("./data/customers.txt", "a+") as customers_file:
-            email = customer.get_email()
-            name = customer.get_name()
-            dateOfBirth = customer.get_dateOfBirth()
-            gender = customer.get_gender()
-            dateOfReg = customer.get_dateOfReg()
-            payMethod = customer.get_payMethod()
-            customers_file.write("{},{},{},{},{},{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod))
+        with open("./data/customers.txt", "a+", encoding = "utf-8") as customersFile:
+            email = customer.getEmail()
+            name = customer.getName()
+            dateOfBirth = customer.getDateOfBirth()
+            gender = customer.getGender()
+            dateOfReg = customer.getDateOfReg()
+            payMethod = customer.getPayMethod()
+            customersFile.write("{},{},{},{},{},{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod))
 
-    def get_customers(self):
+    def getCustomers(self):
         if self.__customers == []:
-            with open("./data/customers.txt", "r") as customer_file:
-                for line in customer_file.readlines():
+            with open("./data/customers.txt", "r", encoding = "utf-8") as customerFile:
+                for line in customerFile.readlines():
                     email, name, dateOfBirth, gender, dateOfReg, payMethod = line.split(",")
-                    new_customer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
-                    self.__customers.append(new_customer)
+                    newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
+                    self.__customers.append(newCustomer)
 
         return self.__customers

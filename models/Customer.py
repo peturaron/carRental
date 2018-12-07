@@ -14,20 +14,20 @@ class Customer:
     def __repr__(self):
         return self.__str__()
 
-    def get_email(self):
+    def getEmail(self):
         return self.__email
 
-    def get_name(self):
+    def getName(self):
         return self.__name
 
-    def get_dateOfBirth(self):
+    def getDateOfBirth(self):
         return self.__dateOfBirth
 
-    def get_gender(self):
+    def getGender(self):
         return self.__gender
 
-    def get_dateOfReg(self):
+    def getDateOfReg(self):
         return self.__dateOfReg
 
-    def get_payMethod(self):
+    def getPayMethod(self):
         return self.__payMethod

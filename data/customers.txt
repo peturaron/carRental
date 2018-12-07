@@ -1,2 +1,3 @@
 peturs17@ru.is,Petur Aron Sigurdsson,06.11.94,M,05.12.18,Cash
 sindrik17@ru.is,Sindri Snaefells Kristinsson,03.11.94,M,01.12.17,Card
+asta@astriki.is,Ásta Gísladóttir,20-12-1972,F,7-12-2018,Card
