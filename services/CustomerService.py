@@ -9,8 +9,7 @@ class CustomerService:
             self.__customerRepo.addCustomer(customer)
 
     def isValidCustomer(self, customer):
-        #here should be ssome code to
-        #validate the customer
+        
         return True
 
     def getCustomers(self):
