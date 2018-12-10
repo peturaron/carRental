@@ -4,6 +4,7 @@ class CustomerRepository:
 
     def __init__(self):
         self.__customers = []
+        self._customerDictionary = {} #self.getCustomerDictionary()
 
     def addCustomer(self, customer):
         # first add to file then to private list
@@ -24,3 +25,25 @@ class CustomerRepository:
                     newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
                     self.__customers.append(newCustomer)
         return self.__customers
+
+    def getCustomerDictionary(self):
+        if self._customerDictionary == {}:
+            try:
+                with open("./data/customers.txt", "r") as customerFile:
+                    #self._carDictionary = {}
+                    for line in customerFile.readlines():
+                        email, name, dateOfBirth, gender, dateOfReg, payMethod = line.split(":")
+                        allCustomers = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
+                        customerKey = email
+                        attributeList = self.createAttributeList(email, name, dateOfBirth)
+                        self._customerDictionary[customerKey] = attributeList
+                    return self._customerDictionary
+
+            except FileNotFoundError:
+                return {}
+
+        return self._customerDictionary
+
+    def createAttributeList(self, email, name, dateOfBirth):
+        list = [email, name, dateOfBirth]
+        return list

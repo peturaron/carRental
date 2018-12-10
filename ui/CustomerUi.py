@@ -1,21 +1,23 @@
 from services.CustomerService import CustomerService
 from models.Customer import Customer
-import os
+from repositories.CustomerRepository import CustomerRepository
 
 class CustomerUi:
 
     def __init__(self):
         self.__customerService = CustomerService()
+        self.__customerRepo = CustomerRepository()
 
     def main_menu(self):
 
         action = ""
-        while(action != "3"):
-           
+        while(action != "4"):
+
             print("Customers: \n ")
             print("1. Register a customer")
-            print("2. List all customers") #A eftir ad breyta 2 i search for a customer
-            print("3. Main menu")
+            print("2. List all customers")
+            print("3. Search for customer")
+            print("4. Main menu")
 
             action = input("\nChoose an option: ").lower()
 
@@ -38,3 +40,15 @@ class CustomerUi:
                     printString = repr(counter) + ". " + repr(customer)
                     print(repr(counter) + ". \n" + repr(customer))
                     counter += 1
+
+            elif action == "3":
+                print("\nSEARCH FOR A CUSTOMER\n")
+                print("_"*40, "\n")
+                name = input("Customer email (email): ")
+
+                customerInfo = self.__customerService.searchForCustomerInformation(name)
+                for attribute in customerInfo:
+                    print(attribute)
+
+            else:
+                print("\nPlease enter a valid number\n")
