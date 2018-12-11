@@ -9,12 +9,16 @@ class CustomerService:
             self.__customerRepo.addCustomer(customer)
 
     def isValidCustomer(self, customer):
-        #here should be ssome code to
-        #validate the customer
+
         return True
 
     def getCustomers(self):
         return self.__customerRepo.getCustomers()
 
-    def getCustomersByGenre(self, name):
-        pass
+
+    def getAllCustomers(self):
+        return self.__customerRepo.getCustomers()
+
+
+    def searchForCustomerInformation(self, email):
+        return self.__customerRepo.getCustomerDictionary()[email]

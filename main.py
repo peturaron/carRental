@@ -1,4 +1,4 @@
-from ui.SalesmanUi import SalesmanUi
+from ui.CustomerUi import CustomerUi
 from ui.CarUi import CarUi
 
 def main():
@@ -11,19 +11,19 @@ def main():
             print(mainMenu)
 
             action = input("Choose an option: ")
-            
+
             if action == "1":
                 pass
             elif action == "2":
                 carUi = CarUi()
                 carUi.mainMenu()
             elif action == "3":
-                ui = SalesmanUi()
+                ui = CustomerUi()
                 ui.main_menu()
             elif action == "4":
                 break
             else:
                 print("Please enter valid number")
                 print()
-    
+
 main()

@@ -116,9 +116,8 @@ class CarUi:
                 break
             else:
                 print("Please enter valid car Id.")
-        
-        self.backToCarMenu()
 
+        self.backToCarMenu()
 
     def displayPriceList(self):
         self.clear()
@@ -135,7 +134,7 @@ class CarUi:
         carName = input("Car name: ").title()  #villuprófun: á bara að vera str.
         year = input("Year: ")
         carType = input("Car type(small/medium/large): ").lower()   #villuprófun: ef ekki small/medium/large þá villa.  þetta er tengist price og því mikilvægt.
-
+       
         newCar = Car(carId, carName, year, carType)
         self._carService.addNewCar(newCar)
         
@@ -147,6 +146,7 @@ class CarUi:
     def backToCarMenu(self):
         print()
         self.lineInHeader()
+
         print("{}\n".format("b - Back to Car menu"))
         back = "yes"
         while back != "b":
@@ -158,6 +158,7 @@ class CarUi:
             else:
                 print("Please choose valid option.")
 
+
     def clear(self): 
         # Virkni fyrir windows 
         if name == 'nt': 
@@ -166,11 +167,10 @@ class CarUi:
         else: 
             _ = system('clear')
 
-
     #Eftir að útfæra Function til að velja breyta/remove car.
 
 ##############################################################
 # car = CarUi()
 # car.mainMenu()
 
-##################################################################
+#################################################################

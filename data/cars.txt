@@ -14,3 +14,4 @@ UK E82:Toyota:2017:large:38300:active
 OW B97:Kia:2018:small:12000:active
 ME P92:Toyota:2018:small:12000:active
 OW W02:Audi:2018:medium:20500:inactive
+QA 456:Kia:2019:medium:0:active

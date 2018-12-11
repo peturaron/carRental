@@ -59,7 +59,4 @@ class CarService:
         return self._carRepo.getCars()
 
     def searchForCarInformation(self, carId):
-        return self._carRepo.getCarDictionary()[carId]
-
-
-    
+        return self._carRepo.getCarDictionary()[carId]    
