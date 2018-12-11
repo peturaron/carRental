@@ -15,26 +15,18 @@ class CustomerUi:
 
         action = ""
         while(action != "4"):
-
-            print("Customers: \n ")
-            print("1. Register a customer")
-            print("2. List all customers")
-            print("3. Search for customer")
-            print("4. Main menu")
+            print("\nCUSTOMER MENU") 
+            print("_"*40,"\n")
+            mainMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format("1 - Register a customer", "2 - List all customer", "3 - Search for a customer", "4 - Return to main menu")
+            print(mainMenu)
 
             action = input("\nChoose an option: ").lower()
 
             if action == "1":
                 self.createCustomer()
             elif action == "2":
-                counter = 1;
-                customers = self.__customerService.getCustomers()
-
-                for customer in customers:
-                    printString = repr(counter) + ". " + repr(customer)
-                    print(repr(counter) + ". \n" + repr(customer))
-                    counter += 1
-
+                self.viewAllCustomers()
+                
             elif action == "3":
                 print("\nSEARCH FOR A CUSTOMER\n")
                 print("_"*40, "\n")
@@ -99,9 +91,18 @@ class CustomerUi:
     def validPayment(self):
         while True:
             try:
-                option = input("Write 'Cash' or 'Card' depanding on the customer: ").lower()
+                option = input("Write 'Cash' or 'Card' depending on the customer: ").lower()
                 validPayment = re.search("cash", option) or re.search("card", option)
                 if validPayment:
                     return option
             except ValueError as e:
                     print(e)
+                
+    def viewAllCustomers(self):
+        counter = 1;
+        customers = self.__customerService.getCustomers()
+
+        for customer in customers:
+            printString = repr(counter) + ". " + repr(customer)
+            print(repr(counter) + ". \n" + repr(customer))
+            counter += 1
