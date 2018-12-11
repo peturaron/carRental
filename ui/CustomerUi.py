@@ -2,13 +2,16 @@ from services.CustomerService import CustomerService
 from models.Customer import Customer
 from repositories.CustomerRepository import CustomerRepository
 
+import datetime
+import re
+
 class CustomerUi:
 
     def __init__(self):
         self.__customerService = CustomerService()
         self.__customerRepo = CustomerRepository()
 
-    def main_menu(self):
+    def customerMenu(self):
 
         action = ""
         while(action != "4"):
@@ -22,16 +25,7 @@ class CustomerUi:
             action = input("\nChoose an option: ").lower()
 
             if action == "1":
-                email = input("Email address: ")
-                name = input("Full name: ")
-                dateOfBirth = input("Date of birth: ")
-                gender = input("(M/F): ")
-                dateOfReg = input("Date of registration: ")
-                payMethod = input("(Cash/Card): ")
-
-                newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
-                self.__customerService.addCustomer(newCustomer)
-
+                self.createCustomer()
             elif action == "2":
                 counter = 1;
                 customers = self.__customerService.getCustomers()
@@ -52,3 +46,62 @@ class CustomerUi:
 
             else:
                 print("\nPlease enter a valid number\n")
+
+    def createCustomer(self): 
+        email = self.validEmail()
+        name = self.validName()
+        dateOfBirth = self.validDateOfBirth()
+        gender = self.validGender()
+        dateOfReg = (datetime.date.today())
+        payMethod = self.validPayment()
+
+        newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
+        self.__customerService.addCustomer(newCustomer)
+    
+    def validEmail(self):
+        while True:
+            email = input("Email address: ")
+            emailIsValid = re.search(r"[^@]+[^@]+\.[^@]", email)
+            if emailIsValid:
+                return email
+            else:
+                print("Invalid email address please try again.")
+
+    def validName(self):
+        while True:
+            name = input("Full name: ")
+            if len(name) > 50 or len(name) < 1:
+                print("Invalid. maximum character length is 50 and the minimum is 1")
+            elif all(letters.isalpha() or letters.isspace() for letters in name):
+                return name
+            else:
+                print("Invalid. Name must only use letters")
+         
+    def validDateOfBirth(self):
+        while True:
+            try:
+                print("Please enter the customers date of birth in date-month-year format(e.g. 12-01-1999)" )
+                birthDate = input("Date of birth: ")
+                dateValidated = datetime.datetime.strptime(birthDate,"%d-%m-%Y").date()
+            except ValueError:
+                print("Invalid format. Please enter the date-month-year")
+            else:    
+                return dateValidated
+    def validGender(self):
+        while True:
+            try:
+                option = input("Please enter M for male or F for Female: ").lower()
+                validGender = re.search("m", option) or re.search("f", option)
+                if validGender:
+                    return option
+            except ValueError as e:
+                    print(e)
+    def validPayment(self):
+        while True:
+            try:
+                option = input("Write 'Cash' or 'Card' depanding on the customer: ").lower()
+                validPayment = re.search("cash", option) or re.search("card", option)
+                if validPayment:
+                    return option
+            except ValueError as e:
+                    print(e)

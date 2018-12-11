@@ -8,3 +8,6 @@ larau@ru.is:Lára Unnarsdóttir:14.11.1966:F:01.01.2015:Card
 bjornl@ru.is:Björn Lárusson:22.04.1956:M:01.01.2015:Card
 gudrunj@ru.is:Guðrún Jónsdóttir:14.08.1989:F:01.01.2015:Card
 jonj@ru.is:Jón Jónsson:31.08.2000:M:01.01.2015:Card
+Magnus@ru.is:Magnús Björn Sigurðsson:1993-03-21:m:2018-12-11:cash
+Arnthor@tvg.is:Arnþór Ingi Kristinsson:1990-03-15:m:2018-12-11:card
+Sindrik17@ru.is:Sindri S Kristinsson:1994-06-29:m:2018-12-11:cash
