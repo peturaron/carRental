@@ -4,10 +4,10 @@ from models.Car import Car
 class CarRepository:
 
     def __init__(self):
-        self._cars = [] #self.getCars() 
-        self._avilableCars = self.getAvilableCars()
-        self._rentedCars = self.getRentedCars()
-        self._carDictionary = {} #self.getCarDictionary()
+        self._cars = [] 
+        self._avilableCars = {}
+        self._rentedCars = {}
+        self._carDictionary = {} 
 
     def addCarToFile(self, car):
         try:
@@ -36,23 +36,35 @@ class CarRepository:
         return self._cars
 
     def getAvilableCars(self):
-        #Hér þarf að tengja car og booking klasana
-
-        # if self._cars == []:
-        #     with open("./data/bookings.txt", "r") as bookingFile:
-        #         for line in bookingFile.readlines():
-        #             carId, rentDate, returnDate, bookingStatus, customerEmail = line.split(":")
-        #             #carAvilable = Booking(carId, rentDate, returnDate, bookingStatus, customerEmail)
-        #             #Hér þarf að tengja booking klasann og vinna með date.  
-        #             self._avilableCars.append(carAvilable)
-        # return self._cars
-        self._avilableCars = [["EF A45", "Toyota", "medium"], ["EF A45", "Toyota", "medium"]]
+        if self._avilableCars == {}:
+            try:
+                with open("./data/bookings.txt", "r") as bookingFile:
+                    self._avilableCars = {}
+                    for line in bookingFile.readlines():
+                        carId, rentDate, returnDate, bookingStatus, customerEmail = line.split(":")
+                        if rentDate not in self._avilableCars:
+                            self._avilableCars[rentDate] = carId
+                        else:
+                            self._avilableCars[rentDate].add(carId)
+                    
+            except FileNotFoundError:
+                return {}
         return self._avilableCars
 
-
     def getRentedCars(self):
-        #Hér þarf að tengja car og booking klasana
-        self._rentedCars = ["UK M23", "Toyota"]
+        if self._rentedCars == {}:
+            try:
+                with open("./data/bookings.txt", "r") as bookingFile:
+                    self._rentedCars = {}
+                    for line in bookingFile.readlines():
+                        carId, rentDate, returnDate, bookingStatus, customerEmail = line.split(":")
+                        if (rentDate, returnDate) not in self._rentedCars:
+                            self._rentedCars[(rentDate, returnDate)] = carId
+                        else:
+                            self._rentedCars[(rentDate, returnDate)].add(carId)
+                    
+            except FileNotFoundError:
+                return {}
         return self._rentedCars
 
     def getCarDictionary(self):
@@ -62,7 +74,7 @@ class CarRepository:
                     #self._carDictionary = {}
                     for line in carFile.readlines():
                         carId, carName, year, carType, price, rentalStatus = line.split(":")
-                        allCars = Car(carId, carName, year, carType, price, rentalStatus)
+                        #allCars = Car(carId, carName, year, carType, price, rentalStatus)
                         carKey = carId
                         attributeList = self.createAttributeList(carName, year, carType)
                         self._carDictionary[carKey] = attributeList
@@ -74,14 +86,9 @@ class CarRepository:
         return self._carDictionary
 
     def createAttributeList(self, carName, year, carType):
-        a_list = [carName, year, carType]
-        return a_list
+        aList = [carName, year, carType]
+        return aList
+
 
 
 ##############################################################
-
-
-
-# car_repo = CarRepository()
-# cars = car_repo.getCars()
-# print(cars)

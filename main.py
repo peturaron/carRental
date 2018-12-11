@@ -1,12 +1,10 @@
 from ui.CustomerUi import CustomerUi
 from ui.CarUi import CarUi
 
-
 def main():
-        print("Welcome to Nordic Car Rental! \nPlease enter the number for following actions:\n")
+        print("\n\nWelcome to Nordic Car Rental! \nPlease enter the number for following actions:\n")
         action = ""
         while (action != "4"):
-
             print("\nMAIN MENU")
             print("_"*40,"\n")
             mainMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format("1 - Bookings", "2 - Car", "3 - Customers", "4 - Quit")
