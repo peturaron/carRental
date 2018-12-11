@@ -1,0 +1,4 @@
+type:price(day)
+small:12000
+medium:20500
+large:38300
