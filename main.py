@@ -21,7 +21,7 @@ def main():
                 carUi.mainMenu()
             elif action == "3":
                 ui = CustomerUi()
-                ui.main_menu()
+                ui.customerMenu()
             elif action == "4":
                 break
             else:
