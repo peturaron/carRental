@@ -32,10 +32,10 @@ class CustomerRepository:
                 with open("./data/customers.txt", "r") as customerFile:
                     #self._carDictionary = {}
                     for line in customerFile.readlines():
-                        email, name, dateOfBirth, gender, dateOfReg, payMethod = line.split(":")
+                        email, name, dateOfBirth, gender, dateOfReg, payMethod = line.strip().split(":")
                         allCustomers = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
                         customerKey = email
-                        attributeList = self.createAttributeList(email, name, dateOfBirth)
+                        attributeList = self.createAttributeList(name, email, dateOfBirth)
                         self._customerDictionary[customerKey] = attributeList
                     return self._customerDictionary
 
@@ -44,6 +44,22 @@ class CustomerRepository:
 
         return self._customerDictionary
 
-    def createAttributeList(self, email, name, dateOfBirth):
-        list = [email, name, dateOfBirth]
+    def createAttributeList(self, name, email, dateOfBirth):
+        list = [name, email, dateOfBirth]
         return list
+
+    def deleteCustomer(self, email):
+        customerList = self.getCustomers()
+        for customerX in range(len(customerList)):
+            if customerList[customerX][1] == email:
+                customerList.remove(customerList[customerX])
+        with open("./data/customers.txt", "w", encoding = "utf-8") as customersFile:
+            for customerY in customerList:
+                email = customerY[0]
+                name = customerY[1]
+                dateOfBirth = customerY[2]
+                gender = customerY[3]
+                dateOfReg = customerY[4]
+                payMethod = customerY[5]
+                customersFile.write("{}:{}:{}:{}:{}:{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod))
+            return
