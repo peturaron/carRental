@@ -9,7 +9,7 @@ class Customer:
         self.__payMethod = payMethod
 
     def __str__(self):
-        return "Email: {}\nName: {}\nDate of Birth: {}\nGender: {}\nDate of Registration: {} \nPayment method: {}\n".format(self.__email, self.__name, self.__dateOfBirth, self.__gender, self.__dateOfReg, self.__payMethod)
+        return "\t{:<30}\n\tEmail: {:<30}\n\tDate of Birth: {:<30}\n\tGender: {:<30}\n\tDate of Registration: {:<30}\n\tPayment method: {}\n\t".format(self.__name, self.__email, self.__dateOfBirth, self.__gender, self.__dateOfReg, self.__payMethod)
 
     def __repr__(self):
         return self.__str__()

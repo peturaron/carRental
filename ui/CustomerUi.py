@@ -17,7 +17,10 @@ class CustomerUi:
         while(action != "4"):
             print("\nCUSTOMER MENU") 
             print("_"*40,"\n")
-            mainMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format("1 - Register a customer", "2 - List all customer", "3 - Search for a customer", "4 - Return to main menu")
+            mainMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format("1 - Register a customer", 
+                                                                           "2 - List all customer", 
+                                                                           "3 - Search for a customer", 
+                                                                           "4 - Return to main menu")
             print(mainMenu)
 
             action = input("\nChoose an option: ").lower()
@@ -101,8 +104,8 @@ class CustomerUi:
     def viewAllCustomers(self):
         counter = 1;
         customers = self.__customerService.getCustomers()
-
+        print("\nCUSTOMERS") 
+        print("_"*40,"\n")
         for customer in customers:
-            printString = repr(counter) + ". " + repr(customer)
-            print(repr(counter) + ". \n" + repr(customer))
+            print(repr(counter) + ". " + repr(customer))
             counter += 1
