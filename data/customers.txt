@@ -1,13 +1,13 @@
-sigurdurg@ru.is:Sigurdur Gudmundsson:23.05.1983:M:01.01.2015:Card
-haraldurf@ru.is:Haraldur Sigfússon:24.12.1980:M:01.01.2015:Card
-gudrunf@ru.is:Guðrún Finnsdóttir:01.03.1963:F:01.01.2015:Card
-rutr@ru.is:Rut Rúnarsdóttir:04.06.1999:F:01.01.2015:Card
-gunnari@ru.is:Gunnar Ingason:11.05.1987:M:01.01.2015:Card
-sigridurl@ru.is:Sigríður Logadóttir:23.05.1966:M:01.01.2015:Card
-larau@ru.is:Lára Unnarsdóttir:14.11.1966:F:01.01.2015:Card
-bjornl@ru.is:Björn Lárusson:22.04.1956:M:01.01.2015:Card
-gudrunj@ru.is:Guðrún Jónsdóttir:14.08.1989:F:01.01.2015:Card
-jonj@ru.is:Jón Jónsson:31.08.2000:M:01.01.2015:Card
+sigurdurg@ru.is:Sigurdur Gudmundsson:1983-05-23:M:2015-01-01:Card
+haraldurf@ru.is:Haraldur Sigfússon:1980-12-24:M:2015-01-01:Card
+gudrunf@ru.is:Guðrún Finnsdóttir:1963-03-01:F:2015-01-01:Card
+rutr@ru.is:Rut Rúnarsdóttir:1999-06-04:F:2015-01-01:Card
+gunnari@ru.is:Gunnar Ingason:1987-11-07:M:2015-01-01:Card
+sigridurl@ru.is:Sigríður Logadóttir:1966-05-23:M:2015-01-01:Card
+larau@ru.is:Lára Unnarsdóttir:1966-11-14:F:2015-01-01:Card
+bjornl@ru.is:Björn Lárusson:1956-04-22:M:2015-01-01:Card
+gudrunj@ru.is:Guðrún Jónsdóttir:1989-08-14:F:2015-01-01:Card
+jonj@ru.is:Jón Jónsson:2000-08-31:M:2015-01-01:Card
 Magnus@ru.is:Magnús Björn Sigurðsson:1993-03-21:m:2018-12-11:cash
 Arnthor@tvg.is:Arnþór Ingi Kristinsson:1990-03-15:m:2018-12-11:card
 Sindrik17@ru.is:Sindri S Kristinsson:1994-06-29:m:2018-12-11:cash
