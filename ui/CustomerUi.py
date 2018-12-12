@@ -1,9 +1,11 @@
 from services.CustomerService import CustomerService
 from models.Customer import Customer
 from repositories.CustomerRepository import CustomerRepository
+from os import system, name
 
 import datetime
 import re
+
 
 class CustomerUi:
 
@@ -15,37 +17,27 @@ class CustomerUi:
 
         action = ""
         while(action != "4"):
-
-            print("Customers: \n ")
-            print("1. Register a customer")
-            print("2. List all customers")
-            print("3. Search for customer")
-            print("4. Main menu")
+            self.clear()
+            print("\nCUSTOMER MENU") 
+            print("_"*40,"\n")
+            mainMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format("1 - Register a customer", 
+                                                                           "2 - List all customer", 
+                                                                           "3 - Search for a customer", 
+                                                                           "4 - Return to main menu")
+            print(mainMenu)
 
             action = input("\nChoose an option: ").lower()
 
             if action == "1":
                 self.createCustomer()
             elif action == "2":
-                counter = 1;
-                customers = self.__customerService.getCustomers()
-
-                for customer in customers:
-                    printString = repr(counter) + ". " + repr(customer)
-                    print(repr(counter) + ". \n" + repr(customer))
-                    counter += 1
-
+                self.viewAllCustomers() 
             elif action == "3":
-                print("\nSEARCH FOR A CUSTOMER\n")
-                print("_"*40, "\n")
-                name = input("Customer email (email): ")
-
-                customerInfo = self.__customerService.searchForCustomerInformation(name)
-                for attribute in customerInfo:
-                    print(attribute)
-
+                self.searchForCustomer()
+            elif action =="4":
+                break
             else:
-                print("\nPlease enter a valid number\n")
+                print("Error wrong input!\n")
 
     def createCustomer(self): 
         email = self.validEmail()
@@ -99,9 +91,64 @@ class CustomerUi:
     def validPayment(self):
         while True:
             try:
-                option = input("Write 'Cash' or 'Card' depanding on the customer: ").lower()
+                option = input("Write 'Cash' or 'Card' depending on the customer: ").lower()
                 validPayment = re.search("cash", option) or re.search("card", option)
                 if validPayment:
                     return option
             except ValueError as e:
                     print(e)
+                
+    def viewAllCustomers(self):
+        self.clear()
+        counter = 1;
+        customers = self.__customerService.getCustomers()
+        print("\nCUSTOMERS") 
+        print("_"*40,"\n")
+        for customer in customers:
+            print(repr(counter) + ". " + repr(customer))
+            counter += 1
+        self.backToCustomerMenu()
+
+    def searchForCustomer(self):
+        self.clear()
+        print("\nSEARCH FOR A CUSTOMER\n")
+        self.lineInHeader()
+        while True:
+            email = input("Customer email (email): ")
+            if self.__customerService.isCustomerListed(email) == True:
+                customerInfo = self.__customerService.searchForCustomerInformation(email)
+                print("Name: " + customerInfo[0])
+                print("\nEmail: " + customerInfo[1])
+                print("\nDate of birth: " + customerInfo[2])
+                break
+            else:
+                print("Email not found. The search is case sensitive")
+                
+        
+        self.backToCustomerMenu()
+
+    def backToCustomerMenu(self):
+        print()
+        self.lineInHeader()
+
+        print("{}\n".format("b - Back to Customer menu"))
+        back = "yes"
+        while back != "b":
+            back = input("Choose an option: ").lower()
+            if back == "b":
+                #self.mainMenu()
+                #sleep(2)
+                break
+            else:
+                print("Please choose valid option.")
+
+    def lineInHeader(self):
+        print("_"*80, "\n")
+
+    def clear(self): 
+        # Virkni fyrir windows 
+        if name == 'nt': 
+            _ = system('cls') 
+        #  Virkni fyrir Mac 
+        else: 
+            _ = system('clear')

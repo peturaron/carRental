@@ -11,6 +11,11 @@ class CustomerService:
     def isValidCustomer(self, customer):
 
         return True
+    
+    def isCustomerListed(self, email):
+        for key in self.__customerRepo.getCustomerDictionary():
+            if key == email:
+                return True 
 
     def getCustomers(self):
         return self.__customerRepo.getCustomers()
@@ -22,3 +27,6 @@ class CustomerService:
 
     def searchForCustomerInformation(self, email):
         return self.__customerRepo.getCustomerDictionary()[email]
+
+    def deleteCustomer(self, email):
+        return self.__customerRepo.deleteCustomer(email)
