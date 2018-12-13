@@ -16,97 +16,112 @@ class BookingUi:
                 "1 - Register a booking", "2 - Search for a booking", "3 - List all bookings", "4 - Main menu")
             print(bookingMenu)
 
-            action = input("Choose an option: ").lower()
+            action = input("Choose an option: ")
             print()
             if action == "1":
                 self.registerBooking()
             elif action == "2":
-                self.searchBooking()
+                self.searchForBooking()
             elif action == "3":
                 self.listBookings()
             elif action == "4":
                 break
             else: 
-                print("\nBooking - ERROR\n")
-        
-
-            
+                print("\nPlease enter valid option\n")
+ 
     def registerBooking(self):
         print("\nREGISTER A BOOKING\n")
         print("_"*40, "\n")
-        tday = datetime.date.today()
         carID = input("Car ID: ")
         inputRentDate = int(input("Beginning of rental date. Please input the number of days from today: "))
-        if inputRentDate == 0:
-            rentDate = tday
-        elif inputRentDate != 0:
-            tdelta = datetime.timedelta(days=inputRentDate)
-            rentDate = tday + tdelta
         inputReturnDate = int(input("Rental duration: "))
-        if inputReturnDate != 0:
-            rdelta = datetime.timedelta(days=inputReturnDate)
-            returnDate = rentDate + rdelta
-        else:
-            print("Please select one day or more: ")
-        bookingStatus = input("Status - (a)ctive or (c)ancel: ") #þetta þarf að útfæra betur
+        rentDate, returnDate = self._bookingService.getRentalDates(inputRentDate, inputReturnDate)
+        bookingStatus = "active"
         customerID = input("Customer ID: ")
-        #price = price listi
-        
-
         newBooking = Booking(carID, rentDate, returnDate, bookingStatus, customerID)
         self._bookingService.addBooking(newBooking)
+        totalPrice = self.getPrice(carID, inputReturnDate)
+        print("The total price for the booking is {}".format(totalPrice))
         
+    def getPrice(self, carId, totalDays):
+        price = self._bookingService.getCarPrice(carId)
+        price = int(price)
+        TotalPrice = price * totalDays
+        return TotalPrice
 
-    def searchBooking(self):
-        print("\nSEARCH FOR A BOOKING\n")
+    def searchForBooking(self):
+            print("\nSEARCH FOR A BOOKING")
+            print("_"*40, "\n")
+            while True:
+                bookingId = input("Customer email: ")
+                if self._bookingService.isBookingListed(bookingId) == True:
+                    bookingInfo = self._bookingService.searchForBookingInformation(bookingId)
+                    for attribute in bookingInfo:
+                        print(attribute)
+                    break
+                else:
+                    print("Please enter valid Customer email.")
+            self.searchBookingMenu(bookingId)
+                
+    def searchBookingMenu(self, bookingId):
         print("_"*40, "\n")
-        searchEmail = input("Customer email: ")
-        bookingInfo = self._bookingService.getBooking(searchEmail)
-        for attribute in bookingInfo:
-            print(attribute)
+        action = ""
+        while(action != "3"):
+            searchBookingMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n".format(
+                    "1 - Change a booking", "2 - Cancel a booking", "3 - Back to Booking Menu")
+            print(searchBookingMenu)
+            action = input("Choose an option: ")
+            print()
+            if action == "1":
+                self.changeBooking(bookingId)
+            elif action == "2":
+                self.cancelBooking(bookingId)
+            elif action == "3":
+                self.mainMenu()
+            else:
+                print("\nPlease enter valid option\n")
 
+    def changeBooking(self, bookingId):
+        print("_"*40, "\n")
+        action = ""
+        while(action != "3"):
+            cancelMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n".format(
+                    "1 - Change rental dates", "2 - Change car", "3 - Back to Booking Menu")
+            print(cancelMenu)
+            action = input("Choose an option: ")
+            print()
+            if action == "1":   
+                self.getNewRentalDates(bookingId)
+            elif action == "2":
+                self.getNewCar(bookingId)
+            elif action == "3":
+                self.mainMenu()
+                break
+            else:
+                print("\nPlease enter valid option\n")
 
+    def getNewRentalDates(self, bookingId):
+        inputRentDate = int(input("Beginning of rental date. Please input the number of days from today: "))
+        inputReturnDate = int(input("Rental duration: "))
+        newRentDate, newReturnDate = self._bookingService.getRentalDates(inputRentDate, inputReturnDate)
+        self._bookingService.getNewRentDateBookingList(newRentDate, newReturnDate, bookingId) 
+        print("\nThe new rent date is ", newRentDate) 
+        print("\nThe new rent date is ", newReturnDate)
+
+    def getNewCar(self, bookingId):
+        newCarID = input("New car ID: ") 
+        self._bookingService.changeCar(bookingId, newCarID)
+        print("\nCar has been changed to {} for {}\n".format(newCarID, bookingId))
+
+    def cancelBooking(self, bookingId):
+        self._bookingService.changeBookingStatus(bookingId)
+        print("\nThe booking for {} has been canceled.\n". format(bookingId))
 
     def listBookings(self):
-        print("\nLIST ALL BOOKINGS\n")
+        print("\nLIST OF ALL BOOKINGS\n")
         print("_"*40, "\n")
         header = "{:^10}{:^10}{:^10}{:^10}{:^10}".format("Car ID", "Rent Date", "Return Date", "Rental Status", "Email")
         print(header, "\n")
-        bookings = self._bookingService.getBooking()
+        bookings = self._bookingService.getBookingList()
         for p in bookings:
             print(p)
-            # {:^10}{:^10}{:^10}{:^10}{:^10}".format("Car ID", "Rent Date", "Return Date", "Rental Status", "Email")
-
-
-    # def cancelBooking(self):
-    #     searchEmail = input("Email: ")
-    #     with open("data/Bookings.txt", "a+") as f:
-    #         searchFile = f.readlines()
-    #     for line in searchFile:
-    #         if searchEmail in line: 
-    #             if bookingStatus == "active":
-    #                 bookingStatus = "cancel" #veit að þetta virkar ekki - á eftir að útfæra
-    #     print("This is the current booking status: ", bookingStatus)
-    # #self.backToBookingMenu()
-
-    # def changeBooking(self):
-    #     a_list = []
-    #     searchEmail = input("Email: ")
-    #     with open("data/Bookings.txt", "a+") as f:
-    #         searchFile = f.readlines()
-    #     for line in searchFile:
-    #         a_list.append(line)
-            
-                
-
-        # def backToBookingMenu(self):
-        #     print("\n","_"*40, "\n")
-        # print("{}\n".format("b - Back to booking menu"))
-        # back = "yes"
-        # while back != "b":
-        #     back = input("Choose an option: ").lower()
-        #     if back == "b":
-        #         #self.mainMenu()
-        #         break
-        #     else:
-        #         print("Please choose valid option.")

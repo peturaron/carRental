@@ -4,13 +4,11 @@ class Booking:
         self._carID = carID
         self._rentDate = rentDate
         self._returnDate = returnDate
-        bookingStatus = "active"
         self._bookingStatus = bookingStatus
         self._customerID = customerID
 
-
     def __str__(self):
-        return "{}:{}:{}:{}:{}".format(self._carID, self._rentDate, self._returnDate, self._bookingStatus, self._customerID)
+        return "{:^10}{:^10}{:^10}{:^10}{:^10}".format(self._carID, self._rentDate, self._returnDate, self._bookingStatus, self._customerID)
 
     def __repr__(self):
         return self.__str__()
