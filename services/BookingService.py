@@ -82,6 +82,19 @@ class BookingService:
             newList.append(newString)
         self._bookingRepo.readNewListToFile(newList)
 
+    def returnCar(self, carId):
+        newList = []
+        for bookings in self._bookingRepo.getBookingList():
+            for attribute in bookings:
+                if bookings[0] == carId:
+                    bookings[3] = "returned"
+                    newString = ":".join(bookings)
+                else:
+                    newString = ":".join(bookings)
+            newList.append(newString)
+        self._bookingRepo.readNewListToFile(newList)
+
+
     def getCarPrice(self, carId):
         return self._bookingRepo.createCarPriceDictionary()[carId]
 

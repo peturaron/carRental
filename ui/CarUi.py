@@ -1,4 +1,5 @@
 from services.CarService import CarService
+from services.BookingService import BookingService
 from models.Car import Car
 from os import system, name
 from time import sleep
@@ -8,6 +9,7 @@ class CarUi:
 
     def __init__(self):
         self._carService = CarService()
+        self._bookingService = BookingService()
 
     def mainMenu(self):
         action = ""
@@ -95,12 +97,12 @@ class CarUi:
         while True:
             carId = input("License plate (car ID): ")
             if self._carService.isCarListed(carId) == True:
-                #Á eftir að setja inn fall sem breytir stöðunni á 
+                self._bookingService.returnCar(carId)
                 print("\nThe car has been returned")
                 break
             else:
                 print("Please enter valid car Id.")
-        
+         
         self.backToCarMenu()
 
     def searchForCar(self):
