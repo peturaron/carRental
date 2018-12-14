@@ -9,4 +9,4 @@ TG Y78:2019-01-14:2019-01-31:active:gudrunj@ru.is
 YU W56:2018-12-26:2019-01-05:active:gudrunf@ru.is
 SD B78:2019-03-13:2019-03-17:active:jonj@ru.is
 UK M23:2019-07-01:2019-07-07:active:larau@ru.is
-LK D67:2018-12-14:2018-12-16:cancel:gunnari@ru.is
+LK D67:2018-12-14:2018-12-16:cancel:gunnari@ru.isWE 123:2018-12-19:2018-12-22:active:jonj@ru.is

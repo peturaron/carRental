@@ -23,7 +23,7 @@ class CustomerUi:
             customerMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format("1 - Register a customer", 
                                                                                      "2 - List all customer", 
                                                                                      "3 - Search for a customer",
-                                                                                     "4 - Unsubscribe Customer", 
+                                                                                     "4 - Unsubscribe customer", 
                                                                                      "5 - Return to main menu")
             print(customerMenu)
 
@@ -35,6 +35,7 @@ class CustomerUi:
                 self.viewAllCustomers() 
             elif action == "3":
                 self.searchForCustomer()
+                break
             elif action == "4":
                 self.unsubscribeCustomer()
                 break
@@ -124,32 +125,41 @@ class CustomerUi:
         self.clear()
         print("\nSEARCH FOR A CUSTOMER\n")
         self.lineInHeader()
+        action = ""
         while True:
             email = input("Customer email (email): ")
             if self.__customerService.isCustomerListed(email) == True:
                 customerInfo = self.__customerService.searchForCustomerInformation(email)
+                self.clear()
                 print("Name: " + customerInfo[0])
                 print("\nEmail: " + customerInfo[1])
                 print("\nDate of birth: " + customerInfo[2])
                 break
             else:
                 print("Email not found. The search is case sensitive")
-                
-        
-        self.backToCustomerMenu()
+        while(action != "2"):
+            self.lineInHeader()
+            print("\n1. Unsubscribe customer")
+            print("\n2. Return to Customer menu")
+            action = input("Choose an option: ")
+            if(action == "1"):
+                print("email-----" + email)
+                self.__customerService.unsubscribeCustomer(email)
+                break
 
     def unsubscribeCustomer(self):
         actionBar = "\t{:<30}\n\t{:<30}\n\t".format("1 - Yes", "2 - No")
         email = ""
         while(email != "b"):
-            email = input("Enter b to return to Customer menu.\nCustomer email (email): ")
+            email = input("Enter b to return to Main menu.\nCustomer email (email): ")
             if self.__customerService.isCustomerListed(email) == True:
                 print("Are you sure you want to unsubscribe " + email)
                 print(actionBar)
                 action = input("\nChoose an option: ").lower()
                 if action == "1":
                     self.__customerService.unsubscribeCustomer(email)
-                    print("Customer has been unsubscribed")
+                    print("Customer has been unsubscribed.\nReturning to Main menu")
+                    sleep(2)
                     break
                 elif action == "2":
                     print("Returning to Main menu")
@@ -158,6 +168,8 @@ class CustomerUi:
                 else:
                     print("Invalid option.")
             elif(email == "b"):
+                print("Returning to Main menu")
+                sleep(2)
                 break
             else:
                 print("Email not found. The search is case sensitive")      

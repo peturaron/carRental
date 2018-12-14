@@ -28,5 +28,6 @@ class CustomerService:
     def searchForCustomerInformation(self, email):
         return self.__customerRepo.getCustomerDictionary()[email]
 
-    def deleteCustomer(self, email):
-        return self.__customerRepo.deleteCustomer(email)
+    def unsubscribeCustomer(self, email):
+        self.__customerRepo.unsubscribe(email)
+       
