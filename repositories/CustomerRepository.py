@@ -56,9 +56,9 @@ class CustomerRepository:
                 for line in customerFile.readlines():
                     customerRow = line.strip().split(":") 
                     customerList.append(customerRow)
-                for i in range(len(customerList)):
-                    if customerList[i][0] == email:
-                        customerList[i][7] = "inactive"
+                for customerX in range(len(customerList)):
+                    if customerList[customerX][0] == email:
+                        customerList[customerX][7] = "inactive"
                         break   
             self.readNewListToFile(customerList)
             return

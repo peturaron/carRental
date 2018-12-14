@@ -31,8 +31,9 @@ class CustomerUi:
 
             if action == "1":
                 self.createCustomer()
+                break
             elif action == "2":
-                self.viewAllCustomers() 
+                self.viewAllCustomers()
             elif action == "3":
                 self.searchForCustomer()
                 break
@@ -45,74 +46,38 @@ class CustomerUi:
                 print("Error wrong input!\n")
 
     def createCustomer(self): 
-        email = self.validEmail()
-        name = self.validName()
-        dateOfBirth = self.validDateOfBirth()
-        gender = self.validGender()
-        dateOfReg = (datetime.date.today())
-        payMethod = self.validPayment()
-        cardNumber = self.validCardNumber() 
-        subscription = "active"
- 
-        newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription)
-        self.__customerService.addCustomer(newCustomer)
-    
-    def validEmail(self):
-        while True:
-            email = input("Email address: ")
-            emailIsValid = re.search(r"[^@]+[^@]+\.[^@]", email)
-            if emailIsValid:
-                return email
-            else:
-                print("Invalid email address please try again.")
+        actionBar = "\t{:<30}\n\t{:<30}\n\t".format("1 - Yes", "2 - No")
+        valid = False
+        while(valid != True):
+            email = input("\nEmail address: ")
+            name = input("\nFull name: ") 
+            print("\nPlease enter the customers date of birth in date-month-year format(e.g. 12-01-1999)" )
+            dateOfBirth = input("Date of birth: ")
+            gender = input("\nPlease enter M for male or F for Female: ").lower()
+            dateOfReg = (datetime.date.today())
+            payMethod =input("\nWrite 'Cash' or 'Card' depending on the customer: ").lower()
+            cardNumber = input("\nPlease enter the customers card number for insurance(use '-' between each four digit combination): ")
+            subscription = "active"
+            self.clear()
 
-    def validName(self):
-        while True:
-            name = input("Full name: ")
-            if len(name) > 50 or len(name) < 1:
-                print("Invalid. maximum character length is 50 and the minimum is 1")
-            elif all(letters.isalpha() or letters.isspace() for letters in name):
-                return name
+            newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription)
+            if self.__customerService.addCustomer(newCustomer):
+                valid = True
+                break
             else:
-                print("Invalid. Name must only use letters")
-         
-    def validDateOfBirth(self):
-        print("Please enter the customers date of birth in date-month-year format(e.g. 12-01-1999)" )
-        while True:
-            birthDate = input("Date of birth: ")
-            dateValidated = datetime.datetime.strptime(birthDate,"%d-%m-%Y").date()
-            if dateValidated:
-                return dateValidated
-            else:
-                print("Invalid format. Please enter the date-month-year")
-
-    def validGender(self):
-        while True:
-            option = input("Please enter M for male or F for Female: ").lower()
-            validGender = re.search("m", option) or re.search("f", option)
-            if validGender:
-                return option
-            
-    def validPayment(self):
-        while True:
-            option = input("Write 'Cash' or 'Card' depending on the customer: ").lower()
-            validPayment = re.search("cash", option) or re.search("card", option)
-            if validPayment:
-                return option
-
-    def validCardNumber(self):
-        cardPattern='^([0-9]{4})-?([0-9]{4})-?([0-9]{4})-?([0-9]{4})$'
-        while True:
-            customerCard = input("Please enter the customers card number for insurance: ")
-            validCard = re.match(cardPattern, customerCard)
-            if validCard:
-                return customerCard
-            else:
-                print("Invalid Credit Card please try again.")
-
+                print("Do you want to try again?\n" + actionBar)
+                action = input("\nChoose an option: ").lower()
+                if action == "1":
+                    valid = False
+                elif action == "2":
+                    print("Returning to Main menu")
+                    sleep(2)
+                    break
+                else:
+                    print("Invalid option.")
     def viewAllCustomers(self):
         self.clear()
-        counter = 1;
+        counter = 1
         customers = self.__customerService.getCustomers()
         print("\nCUSTOMERS") 
         print("_"*40,"\n")
@@ -140,11 +105,14 @@ class CustomerUi:
         while(action != "2"):
             self.lineInHeader()
             print("\n1. Unsubscribe customer")
-            print("\n2. Return to Customer menu")
+            print("\n2. Return to Main menu")
             action = input("Choose an option: ")
             if(action == "1"):
-                print("email-----" + email)
                 self.__customerService.unsubscribeCustomer(email)
+                break
+            elif(action == "2"):
+                print("Returning to Main menu")
+                sleep(2)
                 break
 
     def unsubscribeCustomer(self):
