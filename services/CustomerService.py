@@ -1,4 +1,5 @@
 from repositories.CustomerRepository import CustomerRepository
+from repositories.BookingRepository import BookingRepository
 
 import re
 import datetime
@@ -106,3 +107,14 @@ class CustomerService:
         else:
             return False
        
+    def changePayMethod(self, payMethod, email):
+        newList = []
+        for persons in self.__customerRepo.createCustomerListFromFile():
+            for attribute in persons:
+                if persons[0] == email:
+                    persons[5] = payMethod
+                    newString = ":".join(persons)
+                else:
+                    newString = ":".join(persons)
+            newList.append(newString)
+        self.__customerRepo.addChangedCustomerInfoToFile(newList)
