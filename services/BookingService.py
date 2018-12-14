@@ -96,5 +96,5 @@ class BookingService:
     def getCustomerDict(self, customerID):
         return self._bookingRepo.createCustomerDictionaryForBooking()[customerID]
 
-    def getAvailableCarDict(self):
-        return self._bookingRepo.getAvailableCars()
+    # def getAvailableCarDict(self):
+    #     return self._bookingRepo.getAvailableCars()
