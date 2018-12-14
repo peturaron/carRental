@@ -38,7 +38,6 @@ class CarUi:
             elif action == "6":
                 self.displayPriceList()
             elif action == "7":
-                self.clear()
                 break
             else: 
                 print("\nCar - ERROR\n")

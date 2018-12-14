@@ -26,7 +26,6 @@ class CustomerService:
 
         if((email == True) and (name == True) and (dateOfBirth == True) and 
            (gender == True) and (payMethod == True) and (cardNumber  == True) and (subscription == True)):
-            print("Valid")
             return True
         else:
             return False

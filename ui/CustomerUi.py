@@ -152,6 +152,7 @@ class CustomerUi:
                 print("Email not found. The search is case sensitive")      
 
     def changeCustomer(self, email):
+        valid = False
         print("_"*40, "\n")
         action = ""
         while(action != "3"):
@@ -161,8 +162,13 @@ class CustomerUi:
             action = input("Choose an option: ")
             print()
             if action == "1":   
-                payMethod = self.getPayMethod()
-                self.__customerService.changePayMethod(payMethod, email)
+                while(valid != True):
+                    payMethod = self.getPayMethod()
+                    if self.__customerService.validPayment(payMethod):
+                        self.__customerService.changePayMethod(payMethod, email)
+                        valid = True
+                    else:
+                        valid = False
                 print("The payment method has changed to {}".format(payMethod))
                 break
             elif action == "2":

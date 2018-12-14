@@ -259,8 +259,20 @@ class BookingUi:
         self.clear()
         print("CHANGE RENTAL DATES")
         print("_"*40, "\n")
-        inputRentDate = int(input("Beginning of rental date. Please input the number of days from today: "))
-        inputReturnDate = int(input("Rental duration: "))
+        rentDate = False
+        returnDate = False
+        while(rentDate != True):
+            try:
+                inputRentDate = int(input("Beginning of rental date. Please input the number of days from today: "))
+                rentDate = True
+            except ValueError:
+                print("Please input a number")
+        while(returnDate != True):
+            try:
+                inputReturnDate = int(input("Rental duration: "))
+                returnDate = True
+            except ValueError:
+                print("Please input a number")
         newRentDate, newReturnDate = self._bookingService.getRentalDates(inputRentDate, inputReturnDate)
         self._bookingService.getNewRentDateBookingList(newRentDate, newReturnDate, bookingId) 
         print("\nThe new rent date is ", newRentDate) 

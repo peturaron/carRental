@@ -36,7 +36,6 @@ class CustomerRepository:
                     #self._carDictionary = {}
                     for line in customerFile.readlines():
                         email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription = line.strip().split(":")
-                        allCustomers = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription)
                         customerKey = email
                         attributeList = self.createAttributeList(name, email, dateOfBirth)
                         self._customerDictionary[customerKey] = attributeList
