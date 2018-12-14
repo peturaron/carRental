@@ -15,25 +15,27 @@ class CustomerRepository:
             gender = customer.getGender()
             dateOfReg = customer.getDateOfReg()
             payMethod = customer.getPayMethod()
-            customersFile.write("{}:{}:{}:{}:{}:{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod))
+            cardNumber = customer.getCardNumber()
+            subscription = customer.getSubscription()
+            customersFile.write("{}:{}:{}:{}:{}:{}:{}:{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription))
 
     def getCustomers(self):
         if self.__customers == []:
             with open("./data/customers.txt", "r", encoding = "utf-8") as customerFile:
                 for line in customerFile.readlines():
-                    email, name, dateOfBirth, gender, dateOfReg, payMethod = line.split(":")
-                    newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
+                    email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription = line.split(":")
+                    newCustomer = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription)
                     self.__customers.append(newCustomer)
         return self.__customers
 
     def getCustomerDictionary(self):
         if self._customerDictionary == {}:
             try:
-                with open("./data/customers.txt", "r") as customerFile:
+                with open("./data/customers.txt", "r", encoding = "utf-8") as customerFile:
                     #self._carDictionary = {}
                     for line in customerFile.readlines():
-                        email, name, dateOfBirth, gender, dateOfReg, payMethod = line.strip().split(":")
-                        allCustomers = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod)
+                        email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription = line.strip().split(":")
+                        allCustomers = Customer(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription)
                         customerKey = email
                         attributeList = self.createAttributeList(name, email, dateOfBirth)
                         self._customerDictionary[customerKey] = attributeList
@@ -48,18 +50,30 @@ class CustomerRepository:
         list = [name, email, dateOfBirth]
         return list
 
-    def deleteCustomer(self, email):
-        customerList = self.getCustomers()
-        for customerX in range(len(customerList)):
-            if customerList[customerX][1] == email:
-                customerList.remove(customerList[customerX])
+    def unsubscribe(self, email):
+            customerList = []
+            with open("./data/customers.txt", "r", encoding = "utf-8") as customerFile:
+                for line in customerFile.readlines():
+                    customerRow = line.strip().split(":") 
+                    customerList.append(customerRow)
+                for i in range(len(customerList)):
+                    if customerList[i][0] == email:
+                        customerList[i][7] = "inactive"
+                        break   
+            self.readNewListToFile(customerList)
+            return
+
+
+    def readNewListToFile(self, newList):
         with open("./data/customers.txt", "w", encoding = "utf-8") as customersFile:
-            for customerY in customerList:
-                email = customerY[0]
-                name = customerY[1]
-                dateOfBirth = customerY[2]
-                gender = customerY[3]
-                dateOfReg = customerY[4]
-                payMethod = customerY[5]
-                customersFile.write("{}:{}:{}:{}:{}:{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod))
+            for singleCustomer in newList:
+                    email = singleCustomer[0]
+                    name = singleCustomer[1]
+                    dateOfBirth = singleCustomer[2]
+                    gender = singleCustomer[3]
+                    dateOfReg = singleCustomer[4]
+                    payMethod = singleCustomer[5]
+                    cardNumber = singleCustomer[6]
+                    subscription = singleCustomer[7]
+                    customersFile.write("{}:{}:{}:{}:{}:{}:{}:{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription))
             return
