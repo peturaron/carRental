@@ -55,7 +55,7 @@ class CustomerUi:
             dateOfBirth = input("Date of birth: ")
             gender = input("\nPlease enter M for male or F for Female: ").lower()
             dateOfReg = (datetime.date.today())
-            payMethod =input("\nWrite 'Cash' or 'Card' depending on the customer: ").lower()
+            payMethod = self.getPayMethod()
             cardNumber = input("\nPlease enter the customers card number for insurance(use '-' between each four digit combination): ")
             subscription = "active"
             self.clear()
@@ -75,6 +75,11 @@ class CustomerUi:
                     break
                 else:
                     print("Invalid option.")
+
+    def getPayMethod(self):
+        payMethod =input("\nWrite 'Cash' or 'Card' depending on the customer: ").lower()
+        return payMethod
+
     def viewAllCustomers(self):
         self.clear()
         counter = 1
@@ -105,12 +110,16 @@ class CustomerUi:
         while(action != "2"):
             self.lineInHeader()
             print("\n1. Unsubscribe customer")
-            print("\n2. Return to Main menu")
+            print("\n2. Change customer")
+            print("\n3. Return to Main menu")
             action = input("Choose an option: ")
             if(action == "1"):
                 self.__customerService.unsubscribeCustomer(email)
                 break
             elif(action == "2"):
+                self.changeCustomer(email)
+                break
+            elif(action == "3"):
                 print("Returning to Main menu")
                 sleep(2)
                 break
@@ -141,6 +150,26 @@ class CustomerUi:
                 break
             else:
                 print("Email not found. The search is case sensitive")      
+
+    def changeCustomer(self, email):
+        print("_"*40, "\n")
+        action = ""
+        while(action != "3"):
+            changeMenu = "\t{:<30}\n\t{:<30}\n".format(
+                    "1 - Change payment method", "2 - Back to Booking Menu")
+            print(changeMenu)
+            action = input("Choose an option: ")
+            print()
+            if action == "1":   
+                payMethod = self.getPayMethod()
+                self.__customerService.changePayMethod(payMethod, email)
+                print("The payment method has changed to {}".format(payMethod))
+                break
+            elif action == "2":
+                self.customerMenu()
+                break
+            else:
+                print("\nPlease enter valid option\n")
 
     def backToCustomerMenu(self):
         print()

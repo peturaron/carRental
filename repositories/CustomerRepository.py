@@ -5,6 +5,7 @@ class CustomerRepository:
     def __init__(self):
         self.__customers = []
         self._customerDictionary = {} #self.getCustomerDictionary()
+        self._dataList = []
 
     def addCustomer(self, customer):
         # first add to file then to private list
@@ -77,3 +78,23 @@ class CustomerRepository:
                     subscription = singleCustomer[7]
                     customersFile.write("{}:{}:{}:{}:{}:{}:{}:{}\n".format(email, name, dateOfBirth, gender, dateOfReg, payMethod, cardNumber, subscription))
             return
+
+    def createCustomerListFromFile(self):
+        self.dataList = []
+        try:
+            with open("./data/customers.txt", "r", encoding = "utf-8") as customerFile:
+                for line in customerFile.readlines():
+                    customerID, name, year, gender, registerDate, payMethod, cardNumber, status = line.strip().split(":")
+                    data = [customerID, name, year, gender, registerDate, payMethod, cardNumber, status]
+                    self.dataList.append(data)
+            return self.dataList
+
+        except FileNotFoundError:
+                return []
+        
+    def addChangedCustomerInfoToFile(self, newList):
+        myFile = open("./data/customers.txt", "w", encoding = "utf-8")
+        for line in newList:
+            myFile.write(line)
+            myFile.write("\n")
+        myFile.close()
