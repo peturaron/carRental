@@ -6,6 +6,8 @@ class BookingRepository:
         self._booking = []
         self._bookingDictionary = {}
         self._carPriceDict = {}
+        self._customerDictionary = {}
+        self._priceList = []
 
     def addBooking(self, booking):
         with open("./data/bookings.txt", "a+", encoding = "utf-8") as bookingFile:
@@ -81,5 +83,15 @@ class BookingRepository:
                     self._carPriceDict[carId] = price
         except FileNotFoundError:
             return []
-
         return self._carPriceDict
+
+    def createCustomerDictionaryForBooking(self):
+        self._customerDictionary = {}
+        try:
+            with open("./data/customers.txt", "r", encoding = "utf-8") as customerFile:
+                for line in customerFile.readlines():
+                    customerID, name, dateOfBirth, gender, dateOfReg, payMethod, cardNo, status = line.strip().split(":")
+                    self._customerDictionary[customerID] = [name, dateOfBirth, gender, dateOfReg, payMethod, cardNo, status]  
+        except FileNotFoundError:
+            return []
+        return self._customerDictionary

@@ -1,25 +1,9 @@
 from repositories.CarRepository import CarRepository
 import datetime
-#import time
 
 class CarService:
     def __init__(self):
-        self._carRepo = CarRepository()  #tilvik af klasanum fyrir neðan
-
-    def addNewCar(self, car):
-        # Eftir að útfæra, ekki hluti af kröfunum, eyða ef ekki útfært
-        # if self.is_valid_car(car):
-        #     self.__car_repo.add_car(car)  #köllum í fallið fyrir neðan og þar er gögnunum bætt við skrána
-        return self._carRepo.addCarToFile(car)
-
-    def is_valid_car(self, car):
-        # Error check fyrir addNewCar.
-        #here should be some code to
-        #validate the car
-        #error check, er lengdin ekki eins og hún á að vera
-        #er titillinn ekki orð/valid strengur
-        #ákveðið set af inputti sem er rétt sbr type
-        return True
+        self._carRepo = CarRepository()
 
     def isCarListed(self, carId):
         for key in self._carRepo.getCarDictionary():
@@ -28,7 +12,7 @@ class CarService:
 
     def isCarAvailableToday(self):
         carList = []
-        for dates, carId in self._carRepo.getAvilableCars().items():
+        for dates, carId in self._carRepo.getAvailableCars().items():
             year = int(dates[0:4])
             month = int(dates[5:7])
             day = int(dates[-2:])
@@ -54,9 +38,12 @@ class CarService:
                 carList.append(carId)
         return carList
 
-
     def getAllCars(self):
         return self._carRepo.getCars()
 
     def searchForCarInformation(self, carId):
-        return self._carRepo.getCarDictionary()[carId]    
+        return self._carRepo.getCarDictionary()[carId]
+
+    def priceList(self): 
+        return self._carRepo.getPriceList()
+    

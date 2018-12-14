@@ -11,19 +11,20 @@ class CarUi:
 
     def mainMenu(self):
         action = ""
-        while(action != "8"):
+        while(action != "7"):
             self.clear()
             print("\nCAR MENU")
             self.lineInHeader()
-            carMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format(
+            carMenu = "\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t{:<30}\n\t".format(
                 "1 - View available cars", "2 - View rented cars", "3 - View all cars", "4 - Return a car",
-                "5 - Search for a car", "6 - View price list", "7 - Register new car", "8 - Main menu")
+                "5 - Search for a car", "6 - View price list", "7 - Main menu")
             print(carMenu)
             
             action = input("Choose an option: ")
             print()
             if action == "1":
                 self.availableCars()
+                self.backToCarMenu()
             elif action == "2":
                 self.rentedCars()
             elif action == "3":
@@ -35,8 +36,6 @@ class CarUi:
             elif action == "6":
                 self.displayPriceList()
             elif action == "7":
-                self.addNewCar()
-            elif action == "8":
                 self.clear()
                 break
             else: 
@@ -50,14 +49,15 @@ class CarUi:
         print(header)
         carsAvailableToday = self._carService.isCarAvailableToday()
         for carId in carsAvailableToday:
-            print(carId, end = "")
-            #Hér er sami kóði og er notaður í searchForCar(self) til að prenta upplýsingar um bíl
-            carInfo = self._carService.searchForCarInformation(carId)
-            for attribute in carInfo:
-                attribute = "{:^10}".format(attribute)
-                print(attribute, end = "")
+            #print(carId, end = "")
+            for i in carId:
+                for j in i:
+                    print(j, end = "")
+                    carInfo = self._carService.searchForCarInformation(j)
+                    for attribute in carInfo:
+                        attribute = "{:^10}".format(attribute)
+                        print(attribute, end = "")
             print()
-        self.backToCarMenu()
 
     def rentedCars(self):
         self.clear()
@@ -67,13 +67,13 @@ class CarUi:
         print(header)
         carsRentedToday = self._carService.isCarRentedToday()
         for carId in carsRentedToday:
-            print(carId, end = "")
-            #Hér er sami kóði og er notaður í searchForCar(self) til að prenta upplýsingar um bíl
-            carInfo = self._carService.searchForCarInformation(carId)
-            for attribute in carInfo:
-                attribute = "{:^10}".format(attribute)
-                print(attribute, end = "")
-            print()
+            for i in carId:
+                print(i, end = "")
+                carInfo = self._carService.searchForCarInformation(i)
+                for attribute in carInfo:
+                    attribute = "{:^10}".format(attribute)
+                    print(attribute, end = "")
+                print()
         self.backToCarMenu()
 
     def displayAllCars(self):
@@ -83,7 +83,6 @@ class CarUi:
         header = "{:>10}{:>10}{:>10}{:>10}{:>10}{:>20}".format("Car ID", "Name", "Year", "Type", "Price", "Rental Status")
         print(header, "\n")
         cars = self._carService.getAllCars()
-        #Er hægt að búa til eitt fall sem prentar út lista?
         for car in cars:
             print(car, end="")
         self.backToCarMenu()
@@ -93,15 +92,19 @@ class CarUi:
         self.clear()
         print("\nRETURN A CAR")
         self.lineInHeader()
-        carId = input("License plate (car ID): ")
-        if self._carService.isCarListed(carId) == True:
-            pass
-        #Þennan klasa á eftir að útfæra, annað hvort hér eða í booking.
+        while True:
+            carId = input("License plate (car ID): ")
+            if self._carService.isCarListed(carId) == True:
+                #Á eftir að setja inn fall sem breytir stöðunni á 
+                print("\nThe car has been returned")
+                break
+            else:
+                print("Please enter valid car Id.")
+        
         self.backToCarMenu()
 
     def searchForCar(self):
         self.clear()
-        #Þennan klasa má útfæra eins fyrir search customer og search booking.
         print("\nSEARCH FOR A CAR")
         self.lineInHeader()
         while True:
@@ -116,28 +119,18 @@ class CarUi:
                 break
             else:
                 print("Please enter valid car Id.")
-
+        
         self.backToCarMenu()
+
 
     def displayPriceList(self):
         self.clear()
         print("\nPRICE LIST\n")
+        header = "{:^10}{:^10}".format("Car type", "Price")
+        print(header)
         self.lineInHeader()
-        self.backToCarMenu()
-        #Þennan klasa á eftir að útfæra.
-
-    def addNewCar(self):
-        self.clear()
-        print("\nADD NEW CAR\n")  
-        self.lineInHeader()
-        carId = input("License plate (car ID): ")  #villuprófa?
-        carName = input("Car name: ").title()  #villuprófun: á bara að vera str.
-        year = input("Year: ")
-        carType = input("Car type(small/medium/large): ").lower()   #villuprófun: ef ekki small/medium/large þá villa.  þetta er tengist price og því mikilvægt.
-       
-        newCar = Car(carId, carName, year, carType)
-        self._carService.addNewCar(newCar)
-        
+        for price in self._carService.priceList():
+            print("{:^10}{:^10}".format(price[0], price[1]))
         self.backToCarMenu()
 
     def lineInHeader(self):
@@ -146,18 +139,14 @@ class CarUi:
     def backToCarMenu(self):
         print()
         self.lineInHeader()
-
         print("{}\n".format("b - Back to Car menu"))
         back = "yes"
         while back != "b":
             back = input("Choose an option: ").lower()
             if back == "b":
-                #self.mainMenu()
-                #sleep(2)
                 break
             else:
-                print("Please choose valid option.")
-
+                print("Please enter valid option.")
 
     def clear(self): 
         # Virkni fyrir windows 
@@ -166,11 +155,3 @@ class CarUi:
         #  Virkni fyrir Mac 
         else: 
             _ = system('clear')
-
-    #Eftir að útfæra Function til að velja breyta/remove car.
-
-##############################################################
-# car = CarUi()
-# car.mainMenu()
-
-#################################################################

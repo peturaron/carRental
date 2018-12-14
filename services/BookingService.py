@@ -7,9 +7,6 @@ class BookingService:
 
     def addBooking(self, booking):
         return self._bookingRepo.addBooking(booking)
-        
-    # def getBooking(self, searchEmail):
-    #     return self._bookingRepo.getBookingDictionary()[searchEmail]
 
     def getBookingList(self):
         return self._bookingRepo.getBooking()
@@ -25,6 +22,16 @@ class BookingService:
     def searchForBookingInformation(self, bookingId):
         return self._bookingRepo.getBookingDictionary()[bookingId] 
 
+    def isRentDateValid(self, inputRentDate):
+        if inputRentDate.isdigit():
+            if int(inputRentDate) >= 0:
+                return True
+
+    def isReturnDateValid(self, inputReturnDate):
+        if inputReturnDate.isdigit():
+            if int(inputReturnDate) >= 1:
+                return True
+
     def getRentalDates(self, inputRentDate, inputReturnDate):
         tday = datetime.date.today()
         if inputRentDate == 0:
@@ -33,11 +40,9 @@ class BookingService:
             tdelta = datetime.timedelta(days=inputRentDate)
             rentDate = tday + tdelta
         
-        if inputReturnDate != 0:
-            rdelta = datetime.timedelta(days=inputReturnDate)
-            returnDate = rentDate + rdelta
-        else:
-            print("Please select one day or more: ")
+        rdelta = datetime.timedelta(days=inputReturnDate)
+        returnDate = rentDate + rdelta
+
         return rentDate, returnDate
 
     def getNewRentDateBookingList(self, newRentDate, newReturnDate, bookingId):
@@ -79,3 +84,17 @@ class BookingService:
 
     def getCarPrice(self, carId):
         return self._bookingRepo.createCarPriceDictionary()[carId]
+
+    def getCustomerInformationForBooking(self):
+        return self._bookingRepo.createCustomerDictionaryForBooking()
+
+    def isCustomerListed(self, customerID):
+        for customer in self._bookingRepo.createCustomerDictionaryForBooking().keys():
+            if customer == customerID:
+                return True
+
+    def getCustomerDict(self, customerID):
+        return self._bookingRepo.createCustomerDictionaryForBooking()[customerID]
+
+    def getAvailableCarDict(self):
+        return self._bookingRepo.getAvailableCars()
