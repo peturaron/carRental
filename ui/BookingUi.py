@@ -27,10 +27,13 @@ class BookingUi:
             print()
             if action == "1":
                 self.registerBooking()
+                break
             elif action == "2":
                 self.searchForBooking()
+                break
             elif action == "3":
                 self.listBookings()
+                break
             elif action == "4":
                 self.clear()
                 break
@@ -59,6 +62,8 @@ class BookingUi:
         print("\nThe total price for the booking is {} kr\n".format(totalPrice))
         totalPrice = self.getAddtionalInsurance(totalPrice, inputReturnDate)
         self.printCustomer(customerID)
+        print("Rent Date: ", rentDate)
+        print("Return Date: ", returnDate)
         print("\nThe total price for the booking including additional insurance is {} kr\n".format(totalPrice))
         while True:
             saveBooking = input("Book this car? (y/n) ").lower()
@@ -179,11 +184,13 @@ class BookingUi:
                 insuranceCost = insurancePerDay * inputReturnDate
                 totalPrice = price + insuranceCost
                 return totalPrice
+                break
             elif extraInsurance == "n":
                 self.clear()
                 print("BOOKING INFORMAION")
                 print("_"*40, "\n")
                 return price
+                break
             else:
                 print("\nPlease enter valid option\n")
 
@@ -193,13 +200,17 @@ class BookingUi:
             print("_"*40, "\n")
             while True:
                 bookingId = input("Customer email: ")
+                header = "\n{:^12}{:^12}{:^12}{:^12}\n".format("Car ID", "Rent Date", "Return Date", "Status")
+                print(header)
                 if self._bookingService.isBookingListed(bookingId) == True:
                     bookingInfo = self._bookingService.searchForBookingInformation(bookingId)
                     for attribute in bookingInfo:
-                        print(attribute)
+                        booking = "{:^12}".format(attribute)
+                        print(booking, end = "")
                     break
                 else:
                     print("Please enter valid Customer email.")
+            print()
             self.searchBookingMenu(bookingId)
                 
     def searchBookingMenu(self, bookingId):
