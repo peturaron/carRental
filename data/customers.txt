@@ -1,13 +1,10 @@
-sigurdurg@ru.is:Sigurdur Gudmundsson:1983-05-23:M:2015-01-01:Card
-haraldurf@ru.is:Haraldur Sigfússon:1980-12-24:M:2015-01-01:Card
-gudrunf@ru.is:Guðrún Finnsdóttir:1963-03-01:F:2015-01-01:Card
-rutr@ru.is:Rut Rúnarsdóttir:1999-06-04:F:2015-01-01:Card
-gunnari@ru.is:Gunnar Ingason:1987-11-07:M:2015-01-01:Card
-sigridurl@ru.is:Sigríður Logadóttir:1966-05-23:M:2015-01-01:Card
-larau@ru.is:Lára Unnarsdóttir:1966-11-14:F:2015-01-01:Card
-bjornl@ru.is:Björn Lárusson:1956-04-22:M:2015-01-01:Card
-gudrunj@ru.is:Guðrún Jónsdóttir:1989-08-14:F:2015-01-01:Card
-jonj@ru.is:Jón Jónsson:2000-08-31:M:2015-01-01:Card
-Magnus@ru.is:Magnús Björn Sigurðsson:1993-03-21:m:2018-12-11:cash
-Arnthor@tvg.is:Arnþór Ingi Kristinsson:1990-03-15:m:2018-12-11:card
-Sindrik17@ru.is:Sindri S Kristinsson:1994-06-29:m:2018-12-11:cash
+sigurdurg@ru.is:Sigurdur Gudmundsson:1983-05-23:M:2015-01-01:Card:4507-1111-1111-2222:active
+haraldurf@ru.is:Haraldur Sigfússon:1980-12-24:M:2015-01-01:Card:4507-1234-5678-2222:active
+gudrunf@ru.is:Guðrún Finnsdóttir:1963-03-01:F:2015-01-01:Card:4507-1234-5678-2222:active
+rutr@ru.is:Rut Rúnarsdóttir:1999-06-04:F:2015-01-01:Card:4507-1234-5678-2222:active
+gunnari@ru.is:Gunnar Ingason:1987-11-07:M:2015-01-01:Card:4507-1234-5678-2222:active
+sigridurl@ru.is:Sigríður Logadóttir:1966-05-23:M:2015-01-01:Card:4507-1234-5678-2222:active
+larau@ru.is:Lára Unnarsdóttir:1966-11-14:F:2015-01-01:Card:4507-1234-5678-2222:active
+bjornl@ru.is:Björn Lárusson:1956-04-22:M:2015-01-01:Card:4507-1234-5678-2222:active
+gudrunj@ru.is:Guðrún Jónsdóttir:1989-08-14:F:2015-01-01:Card:4507-1234-5678-2222:active
+jonj@ru.is:Jón Jónsson:2000-08-31:M:2015-01-01:Card:4507-1234-5678-2222:active
